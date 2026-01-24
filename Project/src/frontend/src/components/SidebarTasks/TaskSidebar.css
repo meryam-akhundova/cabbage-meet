@@ -1,0 +1,209 @@
+.group-panel {
+  background: #fbfef9;
+  border-radius: 18px;
+  padding: 14px;
+  border: 1px solid #d9eadb;
+  box-shadow: 0 10px 24px rgba(20, 64, 32, 0.07);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+}
+
+.group-panel__title {
+  margin: 0;
+  font-size: 0.78rem;
+  color: #56715e;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.group-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.group-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0;
+}
+
+.group-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.group-color-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.group-color-input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+.group-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.1);
+  cursor: pointer;
+}
+
+.group-name {
+  font-size: 0.85rem;
+  color: #163722;
+}
+
+.group-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.group-count {
+  font-size: 0.7rem;
+  color: #7a9180;
+  min-width: 18px;
+  text-align: center;
+}
+
+.group-delete {
+  border: none;
+  background: transparent;
+  color: #b91c1c;
+  cursor: pointer;
+  padding: 2px 4px;
+  border-radius: 6px;
+}
+
+.group-delete:hover {
+  background: rgba(185, 28, 28, 0.1);
+}
+
+.group-delete:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+  background: transparent;
+}
+
+.group-form {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  border: 1px solid #d3e7d6;
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: #f5fbf4;
+}
+
+.group-form input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font-size: 0.85rem;
+  color: #163722;
+}
+
+.group-form input::placeholder {
+  color: #8aa093;
+}
+
+.group-form input:focus {
+  outline: none;
+}
+
+.plus-pill {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: none;
+  background: linear-gradient(135deg, #2f8f4e, #1f6e3b);
+  color: #f5fff6;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1rem;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.plus-pill:hover:not(:disabled) {
+  transform: scale(1.05);
+}
+
+.plus-pill:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.group-actions {
+  display: flex !important;        /* overrides inline-flex → forces layout */
+  align-items: center;
+  gap: 10px;                       /* gives breathing room */
+  margin-left: auto;               /* pushes everything to the right */
+}
+
+.group-visibility {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #2f8f4e;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.group-visibility:hover {
+  background: rgba(47, 143, 78, 0.12);
+}
+
+.visibility-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  border-radius: 6px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visibility-toggle:hover {
+  background: rgba(0,0,0,0.08);
+  transform: scale(1.1);
+}
+
+.visibility-toggle svg {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+/* Subtle change when hidden */
+.group-item[style*="opacity: 0.55"] .visibility-toggle svg {
+  opacity: 0.6;
+}
+
+

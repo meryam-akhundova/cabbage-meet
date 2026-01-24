@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My To-Do List</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f7f9fc;
+        margin: 0;
+        padding: 2rem;
+        display: flex;
+        justify-content: center;
+        color: #1f2a44;
+      }
+      .container {
+        background: white;
+        padding: 2.5rem 3rem;
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(31, 42, 68, 0.12);
+        width: min(900px, 100%);
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      h1 {
+        margin: 0;
+        font-size: 2rem;
+        text-align: center;
+      }
+      .actions {
+        display: flex;
+        justify-content: center;
+      }
+      .primary-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 180px;
+        background: linear-gradient(135deg, #007bff, #00a2ff);
+        color: white;
+        text-decoration: none;
+        padding: 0.75rem 1.5rem;
+        border-radius: 999px;
+        font-weight: 600;
+        letter-spacing: 0.4px;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .primary-btn:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+      }
+      .alert {
+        padding: 0.75rem 1rem;
+        border-radius: 10px;
+        font-weight: 500;
+      }
+      .alert + .alert {
+        margin-top: 0.75rem;
+      }
+      .success {
+        background-color: #d7f5e7;
+        color: #14603c;
+      }
+      .error {
+        background-color: #fde4e4;
+        color: #943030;
+      }
+      .section {
+        background: #f9fbff;
+        border-radius: 14px;
+        padding: 1.5rem;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.6);
+      }
+      .section h2 {
+        margin-top: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 1.25rem;
+      }
+      .section small {
+        font-weight: 500;
+        color: #5c6c8a;
+      }
+      .task-list {
+        list-style: none;
+        padding: 0;
+        margin: 1rem 0 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .task-card {
+        padding: 1rem 1.25rem;
+        border-radius: 12px;
+        background: white;
+        border: 1px solid rgba(0, 123, 255, 0.15);
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 0.75rem 1.5rem;
+        align-items: center;
+      }
+      .task-header {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+      }
+      .task-title {
+        font-size: 1.05rem;
+        font-weight: 600;
+        margin: 0;
+        word-break: break-word;
+      }
+      .task-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.75rem;
+        font-size: 0.9rem;
+        color: #5c6c8a;
+      }
+      .badge {
+        background: rgba(0, 123, 255, 0.12);
+        color: #0054a6;
+        padding: 0.2rem 0.6rem;
+        border-radius: 999px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      .task-actions {
+        display: flex;
+        gap: 0.75rem;
+        align-items: center;
+      }
+      .task-actions form {
+        margin: 0;
+      }
+      .task-actions form button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .link-btn {
+        border: none;
+        background: transparent;
+        padding: 0.35rem 0.6rem;
+        font-size: 0.9rem;
+        font-weight: 600;
+        color: #007bff;
+        cursor: pointer;
+        border-radius: 6px;
+        transition: background 0.2s ease, color 0.2s ease;
+        text-decoration: none;
+      }
+      .link-btn:hover {
+        background: rgba(0, 123, 255, 0.08);
+        color: #0054a6;
+      }
+      .link-btn.danger {
+        color: #d3455b;
+      }
+      .link-btn.danger:hover {
+        background: rgba(211, 69, 91, 0.12);
+        color: #a81e37;
+      }
+      .empty-state {
+        margin: 0.5rem 0 0;
+        color: #7a8aa1;
+        font-style: italic;
+      }
+      .highlight-card {
+        background: linear-gradient(145deg, rgba(0, 123, 255, 0.12), rgba(0, 162, 255, 0.16));
+        border-radius: 16px;
+        padding: 1.5rem 1.75rem;
+        display: grid;
+        gap: 0.75rem;
+      }
+      .highlight-card h2 {
+        margin: 0;
+        font-size: 1.3rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      .highlight-card .task-title {
+        font-size: 1.2rem;
+      }
+      .timestamp {
+        font-size: 0.85rem;
+        color: #5c6c8a;
+      }
+      @media (max-width: 720px) {
+        body {
+          padding: 1.5rem 1rem;
+        }
+        .container {
+          padding: 2rem;
+        }
+        .task-card {
+          grid-template-columns: 1fr;
+        }
+        .task-actions {
+          justify-content: flex-start;
+        }
+      }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Task Dashboard</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div>
+        {% for category, message in messages %}
+          <div class="alert {{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% endwith %}
+
+    <div class="actions">
+      <a class="primary-btn" href="{{ url_for('add') }}">+ Add New Task</a>
+    </div>
+
+    {% if next_task %}
+      <section class="highlight-card">
+        <h2>Next Up</h2>
+        <div class="task-title">{{ next_task['item'] }}</div>
+        <div class="task-meta">
+          <span class="badge">{{ next_task['type'] }}</span>
+          <span>Due: {{ next_task['due_display'] or 'No due date' }}</span>
+          {% if next_task['started_display'] %}
+            <span class="timestamp">Started: {{ next_task['started_display'] }}</span>
+          {% endif %}
+        </div>
+      </section>
+    {% endif %}
+
+    <section class="section">
+      <h2>Due Today <small>Tasks that need your attention now</small></h2>
+      {% if tasks_today %}
+        <ul class="task-list">
+          {% for task in tasks_today %}
+            <li class="task-card">
+              <div class="task-header">
+                <p class="task-title">{{ task['item'] }}</p>
+                <div class="task-meta">
+                  <span class="badge">{{ task['type'] }}</span>
+                  <span>Due: {{ task['due_display'] or 'No due date' }}</span>
+                </div>
+              </div>
+              <div class="task-actions">
+                <a class="link-btn" href="{{ url_for('update', item=task['item']) }}">Update</a>
+                <form method="POST" action="{{ url_for('delete') }}">
+                  <input type="hidden" name="item" value="{{ task['item'] }}">
+                  <button type="submit" class="link-btn danger">Delete</button>
+                </form>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="empty-state">No tasks due today. Nice work!</p>
+      {% endif %}
+    </section>
+
+    <section class="section">
+      <h2>Due Tomorrow <small>Plan ahead for what's next</small></h2>
+      {% if tasks_tomorrow %}
+        <ul class="task-list">
+          {% for task in tasks_tomorrow %}
+            <li class="task-card">
+              <div class="task-header">
+                <p class="task-title">{{ task['item'] }}</p>
+                <div class="task-meta">
+                  <span class="badge">{{ task['type'] }}</span>
+                  <span>Due: {{ task['due_display'] or 'No due date' }}</span>
+                </div>
+              </div>
+              <div class="task-actions">
+                <a class="link-btn" href="{{ url_for('update', item=task['item']) }}">Update</a>
+                <form method="POST" action="{{ url_for('delete') }}">
+                  <input type="hidden" name="item" value="{{ task['item'] }}">
+                  <button type="submit" class="link-btn danger">Delete</button>
+                </form>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="empty-state">You're clear for tomorrow.</p>
+      {% endif %}
+    </section>
+
+    <section class="section">
+      <h2>All Tasks <small>Everything on your radar</small></h2>
+      {% if tasks %}
+        <ul class="task-list">
+          {% for task in tasks %}
+            <li class="task-card">
+              <div class="task-header">
+                <p class="task-title">{{ task['item'] }}</p>
+                <div class="task-meta">
+                  <span class="badge">{{ task['type'] }}</span>
+                  <span>Due: {{ task['due_display'] or 'No due date' }}</span>
+                  {% if task['started_display'] %}
+                    <span class="timestamp">Started: {{ task['started_display'] }}</span>
+                  {% endif %}
+                </div>
+              </div>
+              <div class="task-actions">
+                <a class="link-btn" href="{{ url_for('update', item=task['item']) }}">Update</a>
+                <form method="POST" action="{{ url_for('delete') }}">
+                  <input type="hidden" name="item" value="{{ task['item'] }}">
+                  <button type="submit" class="link-btn danger">Delete</button>
+                </form>
+              </div>
+            </li>
+          {% endfor %}
+        </ul>
+      {% else %}
+        <p class="empty-state">No tasks yet. Use the button above to add your first one.</p>
+      {% endif %}
+    </section>
+  </div>
+</body>
+</html>

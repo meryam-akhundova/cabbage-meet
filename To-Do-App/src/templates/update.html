@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Task</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: #f7f9fc;
+        margin: 0;
+        padding: 2rem;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .container {
+        background: white;
+        padding: 2.5rem 3rem;
+        border-radius: 16px;
+        box-shadow: 0 8px 30px rgba(31, 42, 68, 0.12);
+        width: min(480px, 100%);
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      h1 {
+        margin: 0;
+        text-align: center;
+        font-size: 1.8rem;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+      label {
+        font-weight: 600;
+        color: #1f2a44;
+      }
+      input[type="text"],
+      input[type="date"] {
+        padding: 0.75rem;
+        border-radius: 10px;
+        border: 1px solid rgba(0, 123, 255, 0.2);
+        font-size: 1rem;
+        transition: border 0.2s ease, box-shadow 0.2s ease;
+      }
+      input[type="text"]:focus,
+      input[type="date"]:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.15);
+      }
+      .button-row {
+        display: flex;
+        gap: 1rem;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+      button,
+      a.back-link {
+        flex: 1 1 45%;
+        min-width: 140px;
+        text-align: center;
+        padding: 0.75rem 1rem;
+        border-radius: 999px;
+        font-size: 0.95rem;
+        font-weight: 600;
+        border: none;
+        cursor: pointer;
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      button {
+        background: linear-gradient(135deg, #007bff, #00a2ff);
+        color: white;
+      }
+      button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
+      }
+      a.back-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(0, 123, 255, 0.08);
+        color: #0054a6;
+        text-decoration: none;
+      }
+      a.back-link:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 6px 12px rgba(0, 123, 255, 0.18);
+      }
+      .alert {
+        padding: 0.75rem 1rem;
+        border-radius: 10px;
+        font-weight: 500;
+      }
+      .alert + .alert {
+        margin-top: 0.75rem;
+      }
+      .success {
+        background-color: #d7f5e7;
+        color: #14603c;
+      }
+      .error {
+        background-color: #fde4e4;
+        color: #943030;
+      }
+      .read-only {
+        background: #eef3fc;
+        cursor: not-allowed;
+      }
+      @media (max-width: 520px) {
+        body {
+          padding: 1.5rem;
+        }
+        .container {
+          padding: 2rem;
+        }
+        button,
+        a.back-link {
+          flex: 1 1 100%;
+        }
+      }
+    </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Update Task</h1>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div>
+        {% for category, message in messages %}
+          <div class="alert {{ category }}">
+            {{ message }}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% endwith %}
+
+    <form action="{{ url_for('update', item=task['item']) }}" method="POST">
+      <div>
+        <label>Task</label>
+        <input type="text" value="{{ task['item'] }}" class="read-only" disabled>
+      </div>
+
+      <div>
+        <label>Type</label>
+        <input type="text" name="type" value="{{ task['type'] }}" required>
+      </div>
+
+      <div>
+        <label>Due Date</label>
+        <input type="date" name="due_date" value="{{ due_date_value or '' }}" required>
+      </div>
+
+      <div class="button-row">
+        <button type="submit">Save Changes</button>
+        <a class="back-link" href="{{ url_for('index') }}">Cancel</a>
+      </div>
+    </form>
+  </div>
+</body>
+</html>
+

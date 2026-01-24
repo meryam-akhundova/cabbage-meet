@@ -1,0 +1,207 @@
+.task-popover__backdrop {
+  position: fixed;
+  inset: 0;
+  background: transparent;
+  z-index: 90;
+}
+
+.task-popover {
+  position: fixed;
+  transform: translate(-50%, -10px);
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 25px 60px rgba(15, 64, 32, 0.25);
+  border: 1px solid #d9eadb;
+  min-width: 260px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 100;
+}
+
+.task-popover__header input {
+  margin-top: 2px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #10341f;
+  width: 100%;
+}
+
+.task-popover__header input:focus {
+  outline: none;
+}
+
+.task-popover__day {
+  margin: 0;
+  font-size: 0.85rem;
+  color: #5f7c63;
+}
+
+.task-popover__row {
+  display: flex;
+  gap: 10px;
+}
+
+.task-popover__row label,
+.task-popover__select {
+  display: flex;
+  flex-direction: column;
+  font-size: 0.75rem;
+  color: #4c6a55;
+  flex: 1;
+}
+
+.task-popover__row input,
+.task-popover__select select {
+  margin-top: 4px;
+  border: 1px solid #d3e7d6;
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 0.85rem;
+  background: #f7fbf6;
+}
+
+.task-popover__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.task-popover__actions button {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  background: #d9f0dd;
+  color: #1c3f28;
+}
+
+.task-popover__actions button.danger {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.task-popover__actions button.primary {
+  background: linear-gradient(135deg, #2f8f4e, #1f6e3b);
+  color: #f6fff8;
+}
+
+
+.task-popover-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.task-popover-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #d9eadb;
+  margin-bottom: 12px;
+}
+
+.task-popover-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #10341f;
+}
+
+.task-popover-close {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: #666;
+  cursor: pointer;
+  padding: 0;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+}
+
+.task-popover-close:hover {
+  background: #f5f5f5;
+}
+
+.task-popover-body {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.task-form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-form-group label {
+  font-size: 0.75rem;
+  color: #4c6a55;
+  margin-bottom: 4px;
+}
+
+.task-form-group input,
+.task-form-group select {
+  border: 1px solid #d3e7d6;
+  border-radius: 8px;
+  padding: 6px 8px;
+  font-size: 0.85rem;
+  background: #f7fbf6;
+}
+
+.task-form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.task-popover-footer {
+  padding-top: 12px;
+  border-top: 1px solid #d9eadb;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.task-popover-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.task-btn {
+  border: none;
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
+.task-btn-primary {
+  background: linear-gradient(135deg, #2f8f4e, #1f6e3b);
+  color: #f6fff8;
+}
+
+.task-btn-secondary {
+  background: #d9f0dd;
+  color: #1c3f28;
+}
+
+.task-btn-danger {
+  background: #fee2e2;
+  color: #b91c1c;
+}
