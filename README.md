@@ -60,4 +60,3 @@ In the Project directory, options are as follows:
 
 Discuss in your team your ideas, and within the `Projects/docs` directory write
 a `charter.md` file with the project you are proposing.
-
